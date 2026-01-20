@@ -15,4 +15,9 @@
 h1 {
   display: inline;
 }
+@media screen and (max-width: 450px) {
+  h1 {
+    font-size: 27px;
+  }
+}
 </style>

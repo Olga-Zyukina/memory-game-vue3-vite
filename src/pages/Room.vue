@@ -144,4 +144,15 @@ onMounted(() => {
   display: inline;
   padding-right: 5px;
 }
+
+@media screen and (max-width: 450px) {
+  .level-up {
+    height: 18px;
+    padding-top: 10px;
+  }
+
+  .game-container {
+    column-gap: 10px;
+  }
+}
 </style>
