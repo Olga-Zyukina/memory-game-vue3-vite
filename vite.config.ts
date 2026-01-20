@@ -5,5 +5,4 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   plugins: [vue()],
     base: '/memory-game-vue3-vite/dist/',
-
 })
