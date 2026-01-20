@@ -1,0 +1,55 @@
+/*** General */
+/** Fonts */
+:root {
+  --default-font: "Roboto", sans-serif;
+  --heading-font: "Montserrat",  sans-serif;
+  --nav-font: "Poppins",  sans-serif;
+}
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+:root { 
+  --background-color: #ffffff; 
+  --default-color: #444444; 
+  --heading-color: #000000;
+  --accent-color: #252223;
+  --surface-color: #ffffff;
+  --contrast-color: #ffffff;
+  --breadcrumbs-color: #f6f6f6; 
+}
+:root {
+  scroll-behavior: smooth;
+}
+/** General Styling & Shared Classes */
+body {
+  color: var(--default-color);
+  font-family: var(--default-font);
+margin: 0 auto;
+}
+a {
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.3s;
+}
+a:hover {
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+  text-decoration: none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading-color);
+  font-family: var(--heading-font);
+}
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
