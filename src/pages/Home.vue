@@ -4,7 +4,7 @@ import { CARD_NUMBER } from "../constants/data";
 import type { ICardNumber } from '../types';
 import AppHeader from "../components/Header.vue";
 
-let _numberCards = ref<ICardNumber[] | any>([]);
+let _numberCards = ref<ICardNumber[]>([]);
 
 onMounted(() => {
   _numberCards.value = CARD_NUMBER;
@@ -17,7 +17,7 @@ onMounted(() => {
   <div class="number-container">
    <div v-for="numberCard in _numberCards">
       <RouterLink :to="{ name: 'room', params: { id: numberCard.value } }">
-        <img :src=numberCard.image :key="numberCard.id" :alt="numberCard.value">
+        <img :src=numberCard.image :key="numberCard.id" :alt="`${numberCard.value} cards`">
       </RouterLink>
     </div>
   </div>

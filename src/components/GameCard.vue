@@ -6,17 +6,13 @@ import type { ICard } from '../types';
 import { commonService } from "../services";
 
 const rootStore = useRootStore();
-const $props = defineProps({
-  card: { type: Object, default: () => { } },
-  id: {
-    type: Number,
-    default: 2
-  }
-});
-
+const $props = defineProps<{
+  id: number,
+  card: ICard
+}>();
 const _cardList = computed(() => rootStore.cardList);
 
-const handleClick = (card: any) => {
+const handleClick = (card: ICard) => {
   checkFlipped(card);
   checkStatus();
   if (!rootStore.state.lastCard) {
@@ -28,7 +24,7 @@ const handleClick = (card: any) => {
     checkAllPaired();
   } else {
     _cardList.value.map((elem: { id: string; image: string; flipped: boolean }) => {
-      if (elem.id === rootStore.state.lastCard.id) {
+      if (elem.id === rootStore.state?.lastCard?.id) {
         setTimeout(() => {
           card.flipped = false;
           elem.flipped = false;

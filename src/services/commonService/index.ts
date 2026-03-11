@@ -1,4 +1,4 @@
-import type { ICard } from '../../types';
+import type { ICard } from "../../types";
 
 function id(length: number) {
   const result = [];
@@ -6,7 +6,7 @@ function id(length: number) {
   const charactersLength = characters.length;
   for (let i = 0; i < length; i++) {
     result.push(
-      characters.charAt(Math.floor(Math.random() * charactersLength))
+      characters.charAt(Math.floor(Math.random() * charactersLength)),
     );
   }
   return result.join("");
@@ -32,17 +32,21 @@ export function saveRecord(score: number) {
 }
 
 export function shuffleAllCards(cards: string[]) {
-  const newCards: ICard | any = cards.map((image: string) => ({
+  const emptyCard: ICard = {
+    id: "",
+    image: "",
+    flipped: false,
+  };
+  const newCards: ICard[] = cards.map((image: string) => ({
     id: id(8),
     image,
     flipped: false,
   }));
-
   for (let i = newCards.length; i; i -= 1) {
     const j = Math.floor(Math.random() * i);
     const x = newCards[i - 1];
-    newCards[i - 1] = newCards[j];
-    newCards[j] = x;
+    newCards[i - 1] = newCards[j] || emptyCard;
+    newCards[j] = x || emptyCard;
   }
   return newCards;
 }

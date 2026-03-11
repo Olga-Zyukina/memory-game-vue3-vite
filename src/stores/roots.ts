@@ -5,7 +5,7 @@ import type { ICard, IState } from '../types';
 import { getRecord, shuffleAllCards } from "../services/commonService/index";
 
 export const useRootStore = defineStore("root", () => {
-  const cardList = ref<ICard | any>([]);
+  const cardList = ref<ICard[]>([{ id: "", image: "", flipped: false }]);
   const state: IState = reactive({
     status: STATUS.READY,
     matches: 0,
@@ -14,12 +14,12 @@ export const useRootStore = defineStore("root", () => {
     record: getRecord(),
   });
   const count = ref(0);
-  let timeCounter: number | any;
+  let timeCounter: number | undefined;
 
-  function getCards(id: any) {
-    let cardItems = CARD_IMAGE.slice(0, id);
+  function getCards(id: number) {
+    let cardItems: string[]= CARD_IMAGE.slice(0, id);
     cardItems = [...cardItems, ...cardItems];
-    cardList.value = shuffleAllCards(cardItems);
+    cardList.value = shuffleAllCards(cardItems) ;
   }
 
   function startTimeCounter() {
