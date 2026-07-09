@@ -48,9 +48,9 @@ src/
 `npm run build`
 
 ## Docker
-- Deploy image
+- Building image
 `docker build .`
-- Deploy images & run containers
+- Building images & run containers
 `docker compose up`<br/>
 Open browser in Development mode: localhost:5173<br/>
 Open browser in Production mode: localhost:5174
