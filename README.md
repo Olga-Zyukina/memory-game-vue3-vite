@@ -55,4 +55,4 @@ src/
 Open browser in Development mode: localhost:5173<br/>
 Open browser in Production mode: localhost:5174
 
-<div><img src="https://github.com/Olga-Zyukina/memory-game-vue3-vite/blob/master/screenshot.png" title="memory-game-vue3-vite" alt="memory-game-vue3-vite"/></div>
+<div><img src="https://github.com/Olga-Zyukina/memory-game-vue3-vite/blob/master/screenshot.png" title="memory-game-vue3-vite" alt="memory-game-vue3-vite" height="300" /></div>
