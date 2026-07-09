@@ -37,4 +37,22 @@ src/
 └── App.vue         # Root component
 ```
 
+## Development
+- Make sure you have Node.js installed.
+- Clone the repo to your machine.
+- Install all dependencies
+`npm install`
+- Development:
+`npm run dev`
+- Production:
+`npm run build`
+
+## Docker
+- Deploy image
+`docker build .`
+- Deploy images & run containers
+`docker compose up`<br/>
+Open browser in Development mode: localhost:5173<br/>
+Open browser in Production mode: localhost:5174
+
 <div><img src="https://github.com/Olga-Zyukina/memory-game-vue3-vite/blob/master/screenshot.png" title="memory-game-vue3-vite" alt="memory-game-vue3-vite"/></div>
