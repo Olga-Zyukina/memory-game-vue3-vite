@@ -20,6 +20,7 @@ A memory game created using **Vue 3 + TypeScript + Vite**.
 -  Vue-router
 -  Axios
 -  Pinia
+-  Docker
 
 ## Live Demo
 
