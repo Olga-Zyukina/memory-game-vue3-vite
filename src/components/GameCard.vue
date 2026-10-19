@@ -1,38 +1,40 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { useRootStore } from "../stores/roots"
+import { useCounterStore } from "../stores/counter"
+import { useCardsStore } from "../stores/cards"
 import { STATUS } from "../constants/data";
 import type { ICard } from '../types';
 import { commonService } from "../services";
 
-const rootStore = useRootStore();
+const counterStore = useCounterStore();
+const cardsStore = useCardsStore();
 const $props = defineProps<{
   id: number,
   card: ICard
 }>();
-const _cardList = computed(() => rootStore.cardList);
+const _cardList = computed(() => cardsStore.cardList);
 
 const handleClick = (card: ICard) => {
   checkFlipped(card);
   checkStatus();
-  if (!rootStore.state.lastCard) {
-    rootStore.state.lastCard = card;
-  } else if (rootStore.state.lastCard !== card && rootStore.state.lastCard.image === card.image) {
-    rootStore.state.lastCard = null;
-    rootStore.state.turns++;
-    rootStore.state.matches++;
+  if (!counterStore.state.lastCard) {
+    counterStore.state.lastCard = card;
+  } else if (counterStore.state.lastCard !== card && counterStore.state.lastCard.image === card.image) {
+    counterStore.state.lastCard = null;
+    counterStore.state.turns++;
+    counterStore.state.matches++;
     checkAllPaired();
   } else {
     _cardList.value.map((elem: { id: string; image: string; flipped: boolean }) => {
-      if (elem.id === rootStore.state?.lastCard?.id) {
+      if (elem.id === counterStore.state?.lastCard?.id) {
         setTimeout(() => {
           card.flipped = false;
           elem.flipped = false;
         }, 1000)
       }
     });
-    rootStore.state.turns++
-    rootStore.state.lastCard = null;
+    counterStore.state.turns++
+    counterStore.state.lastCard = null;
   }
 };
 
@@ -46,17 +48,17 @@ const checkFlipped = (card: ICard) => {
 };
 
 const checkStatus = () => {
-  if (rootStore.state.status === STATUS.READY) {
-    rootStore.state.status = STATUS.PLAYING;
+  if (counterStore.state.status === STATUS.READY) {
+    counterStore.state.status = STATUS.PLAYING;
   }
 };
 
 const checkAllPaired = () => {
-  if (rootStore.state.matches == $props.id) {
-    rootStore.state.status = STATUS.PASSED;
-    commonService.saveRecord(rootStore.count)
-    rootStore.state.record = commonService.getRecord();
-    rootStore.clearTimeCounter();
+  if (counterStore.state.matches == $props.id) {
+    counterStore.state.status = STATUS.PASSED;
+    commonService.saveRecord(counterStore.count)
+    counterStore.state.record = commonService.getRecord();
+    counterStore.clearTimeCounter();
   }
 };
 

@@ -1,20 +1,23 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted } from "vue";
-import { useRootStore } from "../stores/roots"
+import { useCounterStore } from "../stores/counter"
+import { useCardsStore } from "../stores/cards"
 import AppHeader from "../components/Header.vue";
 import Card from "../components/GameCard.vue";
 
-const rootStore = useRootStore();
+const counterStore = useCounterStore();
+const cardsStore = useCardsStore();
+
 const $props = defineProps(["id"]);
-const _cardList = computed(() => rootStore.cardList);
+const _cardList = computed(() => cardsStore.cardList);
 
 onBeforeUnmount(() => {
-  rootStore.restart();
+  counterStore.restart();
 });
 
 onMounted(() => {
-  rootStore.getCards($props.id);
-  rootStore.startTimeCounter();
+  cardsStore.getCards($props.id);
+  counterStore.startTimeCounter();
 });
 
 </script>
@@ -37,15 +40,15 @@ onMounted(() => {
     <div class="score-container">
       <div>
         <p>Matches:</p>
-        <span>{{ rootStore.state.matches }} of {{ $props.id }}</span>
+        <span>{{ counterStore.state.matches }} of {{ $props.id }}</span>
       </div>
       <div>
         <p>Turns:</p>
-        <span>{{ rootStore.state.turns }}</span>
+        <span>{{ counterStore.state.turns }}</span>
       </div>
       <div>
         <p>Record:</p>
-        <span>{{ rootStore.state.record }}</span>
+        <span>{{ counterStore.state.record }}</span>
       </div>
     </div>
     <div class="game-container">
@@ -54,11 +57,11 @@ onMounted(() => {
     <div class="footer">
       <div>
         <p>Status:</p>
-        <span>{{ rootStore.state.status }}</span>
+        <span>{{ counterStore.state.status }}</span>
       </div>
       <div>
         <p>Time:</p>
-        <span>{{ rootStore.count }}</span>
+        <span>{{ counterStore.count }}</span>
       </div>
     </div>
   </div>
